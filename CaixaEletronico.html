@@ -1,0 +1,165 @@
+<html>
+
+<head>
+
+	<script>
+
+		var saldo = 100.5; 
+		function inicio() {
+			var nome_usuario = prompt("Olá, qual o seu nome?")
+			alert("Olá, " + nome_usuario + "!" + " É um prazer ter você por aqui")
+			var opção = parseInt(prompt('Selecione uma opção 1. Saldo 2. Extrato 3. Saque 4. Depósito 5. Tranferência 6. Sair'));
+
+
+
+			switch (opção) {
+				case 1:
+					var senha = 3589
+					var senha_usuario = parseInt(prompt("Digite sua senha:"));
+					if (senha == senha_usuario) {
+						ver_saldo();
+					} else {
+						alert("Senha incorreta.");
+						inicio()
+					}
+					break;
+				case 2:
+					var senha = 3589
+					var senha_usuario = parseInt(prompt("Digite sua senha:"));
+					if (senha == senha_usuario) {
+						extrato();
+					} else {
+						alert("Senha incorreta.");
+						inicio()
+					}
+					inicio()
+					break;
+				case 3:
+					var senha = 3589
+					var senha_usuario = parseInt(prompt("Digite sua senha:"));
+					if (senha == senha_usuario) {
+						fazer_saque();
+					} else {
+						alert("Senha incorreta.");
+						inicio()
+					}
+					inicio()
+					break;
+				case 4:
+					var senha = 3589
+					var senha_usuario = parseInt(prompt("Digite sua senha:"));
+					if (senha == senha_usuario) {
+						fazer_deposito();
+					} else {
+						alert("Senha incorreta.");
+						inicio()
+					}
+					inicio()
+					break;
+				case 5:
+					var senha = 3589
+					var senha_usuario = parseInt(prompt("Digite sua senha:"));
+					if (senha == senha_usuario) {
+						transferencia();
+					} else {
+						alert("Senha incorreta.");
+						inicio()
+					}
+					inicio()
+					break;
+				case 6:
+					sair();
+					break;
+				default:
+					erro();
+					break;
+			}
+		}
+
+		function ver_saldo() { //senha
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		function fazer_deposito() { //senha
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			} else if (deposito <= 0) {
+				alert("Operação não autorizada")
+			} else {
+				saldo += deposito;
+				ver_saldo();
+			}
+		}
+
+		function fazer_saque() { //senha
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			} else if (saldo < saque) {
+				alert("Saldo insuficiente. Operação não autorizada.");
+				fazer_saque();
+			} else if (saque <= 0) {
+				alert("Operação não autorizada.")
+				fazer_saque();
+			} else {
+				saldo -= saque;
+				ver_saldo();
+			}
+		}
+		function transferencia() {
+
+			var transferencia = parseFloat(prompt('Informe o número da sua conta'));
+
+			if (isNaN(transferencia) || transferencia === '') {
+				alert('Por favor, informe número da conta que recebrá o valor.');
+				transferencia();
+			}
+
+			var valor_tranferencia = parseInt(prompt('Insira o valor que você deseja transferir'))
+
+			if (valor_tranferencia > saldo) {
+				alert('Operação não autorizada')
+				transferencia();
+			}
+			else if (valor_tranferencia <= 0) {
+				alert('Operação não autorizada')
+				transferencia();
+			}
+			else {
+				saldo -= valor_tranferencia;
+				ver_saldo();
+			}
+
+		}
+		function extrato() {
+			var saldo = 100.5;
+			var historico = "Data: 01/04/2023 - Depósito de R$859\nData: 08/04/2023 - Saque de R$50\nData: 30/04/2023 - Pagamento para PEGPESE de R$362";
+			alert("Extrato bancário:\n\n" + historico);
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
